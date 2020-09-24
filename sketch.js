@@ -46,10 +46,12 @@ function setup() {
   restart=createSprite(300,100,3,5);
   restart.addImage(restartImg);
   restart.visible=false;
+  restart.scale=0.5;
   
   gameover=createSprite(400,150,5,6);
   gameover.addImage(gameoverImg);
   gameover.visible=false;
+  gameover.scale=0.6;
 
   invisibleGround = createSprite(200, 190, 400, 10);
   invisibleGround.visible = false;
@@ -66,12 +68,17 @@ function draw() {
   background(180);
 
   if (gamestate === PLAY) {
-    if (keyDown("space")) {
+    if (keyDown("space") && trex.y>161.8) {
       trex.velocityY = -10;
     }
+
+    trex.velocityY = trex.velocityY + 0.8;
+    console.log(trex.y);
+
     score = score + Math.round(getFrameRate() / 60);
     
-    trex.velocityY = trex.velocityY + 0.8;
+    
+  
     
     spawnClouds();
     
